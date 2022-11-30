@@ -1,0 +1,137 @@
+:root {
+    --index: calc(1vh + 1vw)
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.container {
+    min-height: 100vh;
+    padding: 50px;
+}
+.text, .desc {
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    height: 100%;
+    white-space: pre-wrap;
+}
+
+.text_outer, .desc_outer {
+    background: #F0E8E1;
+    padding: 15px;
+    min-height: 80%;
+    border-radius: 20px;
+    margin: 10px 20px;
+    font-size: 23px;
+}
+
+.text_outer {
+    flex: 3;
+}
+
+.desc_outer {
+    flex: 1;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 5px 10px;
+}
+
+.btn_outer {
+    width: 70px;
+    height: 70px;
+    background: white;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: background-color .2s, box-shadow .4s, filter .4s;
+}
+
+.btn_outer:hover {
+    box-shadow: 0 0 10px #66cdff;
+    filter: brightness(80%);
+}
+
+.btn_outer:active {
+    background: lightgray;
+}
+
+.img {
+    width: 30px;
+}
+
+.left {
+    display: flex;
+}
+
+.controls{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%
+}
+
+.right .btn_outer{
+    width: calc(10*var(--index));
+}
+
+.right .btn {
+    font-size: calc(2*var(--index));
+}
+
+.desc {
+    display: flex;
+    justify-content: center;
+}
+
+.wait{
+    color: white;
+}
+
+.start_pos {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+@media screen and (min-width: 1000px) {
+    .top_text {
+        display: flex;
+    }
+    .text, .desc {
+        min-height: 60vh;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .container {
+        padding: 10px;
+    }
+    .top_text {
+        display: block;
+    }
+    .desc {
+        min-height: 30vh
+    }
+    .text {
+        min-height: 50vh;
+    }
+    .text_outer, .desc_outer {
+        margin: 0 0 10px 0;
+    }
+}
+

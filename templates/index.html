@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>recorder main page</title>
+        <script src="{{url_for('static', filename='js/record.js')}}" defer></script>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <style>
+            body {
+                background: url('{{url_for('static', filename='imgs/bg.svg')}}') no-repeat;
+                background-size: cover; /* Современные браузеры */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="start_pos"></div>
+        <div class="container">
+            <div class="top_text">
+                <div class="text_outer">
+                    <pre class="text">{{text["text"]}}</pre>
+                </div>
+                <div class="desc_outer">
+                    <pre class="desc">{{text["instruction"]}}</pre>
+                </div>
+            </div>
+
+            <p class="wait"></p>
+            <div class="controls">
+                <div class="left">
+                    <div class="btn_outer">
+                        <button class="btn" id="startListen"><img
+                                src="{{url_for('static', filename='imgs/listen.svg')}}"
+                                alt="start listen" class="img"></button>
+                    </div>
+                    <div class="btn_outer">
+                        <button class="btn" id="start"><img src="{{url_for('static', filename='imgs/record.svg')}}"
+                                                            alt="stop listen" class="img"></button>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="btn_outer">
+                        <button class="btn" id="skip" onclick="onSkip()">skip</button>
+                    </div>
+                    <div class="btn_outer">
+                        <button class="btn" onclick="onSend()">send</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <audio id="audio" preload="metadata">
+                <source src="{{url_for('static', filename='sounds/'+name)}}" type="audio/wav">
+            </audio>
+        </div>
+    </body>
+    <script>
+        let startButton = document.querySelector("#start")
+        let listenButton = document.querySelector("#startListen")
+        let rec_div = document.querySelector(".wait")
+
+        function onSkip() {
+            window.location.replace('/next')
+        }
+
+        function onStop() {
+            rec_div.innerText = "Подождите..."
+            setTimeout(() => {
+                window.location.reload()
+            }, 100)
+        }
+
+        function onSend(){
+            window.location.replace("/save_id?id=" + "{{text['id']}}")
+        }
+
+        function onStart() {
+            document.querySelector(".start_pos").scrollIntoView({behavior: 'smooth'})
+            startButton.parentElement.style.backgroundColor = "lightgreen"
+            startButton.onclick = onStop
+        }
+
+        function listen() {
+            let audio = document.querySelector("#audio")
+            audio.play()
+            listenButton.onclick = stopListen
+            listenButton.innerHTML = "<img src=\"{{url_for('static', filename='imgs/pause.svg')}}\"\n" +
+                " alt=\"stop listen\" class=\"img\">"
+            audio.addEventListener("timeupdate", function (){
+                if (audio.currentTime === audio.duration) {
+                    listenButton.innerHTML = "<img src=\"{{url_for('static', filename='imgs/listen.svg')}}\"\n" +
+                " alt=\"stop listen\" class=\"img\">"
+                }
+            })
+        }
+
+        function stopListen() {
+            let audio = document.querySelector("#audio")
+            audio.pause()
+            listenButton.onclick = listen
+            listenButton.innerHTML = "<img src=\"{{url_for('static', filename='imgs/listen.svg')}}\"\n" +
+                " alt=\"stop listen\" class=\"img\">"
+        }
+        startButton.onclick = onStart
+        listenButton.onclick = listen
+    </script>
+</html>
