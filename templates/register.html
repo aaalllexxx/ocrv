@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    {% from "_formhelpers.html" import render_field %}
+    <body>
+        <form method=post>
+            <dl>
+                {{ render_field(form.username) }}
+                {% if email_required %}
+                    {{ render_field(form.email) }}
+                {% endif %}
+                {{ render_field(form.password) }}
+                {{ render_field(form.confirm) }}
+            </dl>
+            <p><input type=submit value=Register></p>
+        </form>
+    </body>
+</html>

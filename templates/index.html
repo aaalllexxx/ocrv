@@ -14,14 +14,28 @@
         </style>
     </head>
     <body>
+        <div class="error">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="error_outer">
+                        <div class="error_inner">
+                            <p class="error_text">{{ message }}</p>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
         <div class="start_pos"></div>
         <div class="container">
             <div class="top_text">
                 <div class="text_outer">
-                    <pre class="text">{{text["text"]}}</pre>
+                    <p class="text">{{text["text"]|safe}}</p>
                 </div>
                 <div class="desc_outer">
-                    <pre class="desc">{{text["instruction"]}}</pre>
+                    <pre class="desc">{{text["instruction"]|safe}}</pre>
                 </div>
             </div>
 
@@ -50,7 +64,7 @@
 
             </div>
             <audio id="audio" preload="metadata">
-                <source src="{{url_for('static', filename='sounds/'+name)}}" type="audio/wav">
+                <source src="{{url_for('static', filename='sounds/' + name)}}" type="audio/wav">
             </audio>
         </div>
     </body>
@@ -60,7 +74,7 @@
         let rec_div = document.querySelector(".wait")
 
         function onSkip() {
-            window.location.replace('/next')
+            window.location.replace('/skip')
         }
 
         function onStop() {

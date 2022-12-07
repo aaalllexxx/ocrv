@@ -1,6 +1,5 @@
 const URL = 'save';
 let start = document.querySelector("#start");
-console.log(document.body)
 navigator.mediaDevices.getUserMedia({audio: true})
     .then(stream => {
         const mediaRecorder = new MediaRecorder(stream);
