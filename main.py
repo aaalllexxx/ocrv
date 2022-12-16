@@ -10,12 +10,12 @@ mydict = {}
 app = Flask(__name__)
 app.config.update(dict(
     DEBUG=True,
-    MAIL_SERVER = 'smtp.mail.ru',
-    MAIL_PORT = 25,
-    MAIL_USE_TLS = True,
-    MAIL_USE_SSL = False,
-    MAIL_USERNAME = 'a.aabdelnur@mail.ru',
-    MAIL_PASSWORD = 'y2GQg5Dmh05jgDtPmz21',
+    MAIL_SERVER='smtp.mail.ru',
+    MAIL_PORT=25,
+    MAIL_USE_TLS=True,
+    MAIL_USE_SSL=False,
+    MAIL_USERNAME='a.aabdelnur@mail.ru',
+    MAIL_PASSWORD='y2GQg5Dmh05jgDtPmz21',
 ))
 mail = Mail(app)
 env = Environment(".env")

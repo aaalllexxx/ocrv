@@ -24,4 +24,4 @@ def index():
     identifier = ident if ident and env.can_redact else user.text_id
     name = f"{('/sounds/' + str(user.id) + '_' + str(json_data[str(user.id)] - 1))}.wav"
     return render_template("index.html", text=text, id={'iid': identifier, 'strid': str(identifier)}, name=name,
-                           redirect=redir)
+                           redirect=redir, skipbutton=not ("id" in request.args))

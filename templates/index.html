@@ -61,9 +61,11 @@
                     </div>
                 </div>
                 <div class="right">
-                    <div class="btn_outer">
-                        <button class="btn" id="skip" onclick="onSkip()">skip</button>
-                    </div>
+                    {% if skipbutton %}
+                        <div class="btn_outer">
+                            <button class="btn" id="skip" onclick="onSkip()">skip</button>
+                        </div>
+                    {% endif %}
                     <div class="btn_outer">
                         <button class="btn" onclick="onSend()">send</button>
                     </div>
