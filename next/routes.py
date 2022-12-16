@@ -23,7 +23,7 @@ def skip_text():
     else:
         index = ""
     info = LogInfo(
-        f"skipped text {text_list[user.text_id]['id']}{'' if not env.auto_text_analise or not index else ' with potential error in position ' + str(index[0]) + ' in word ' + index[1] + '. Word to replace: ' + index[2]} ",
+        f"skipped text {text_list[user.text_id]['id']}{'' if not env.auto_text_analise or not index else ' with potential error in position ' + str(index[0]) + ' in word `' + index[1] + '`. Word to replace: `' + index[2]}`",
         str(user.id))
     Debug.log(info, LogType.file, "logs/texts.log")
     skip(user)
