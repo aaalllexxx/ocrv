@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 :root {
     --index: calc(1vh + 1vw)
 }
@@ -7,12 +9,14 @@
     padding: 0;
     box-sizing: border-box;
     position: relative;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .container {
     min-height: 100vh;
     padding: 50px;
 }
+
 .text, .desc {
     background: white;
     padding: 10px;
@@ -46,7 +50,7 @@
     border: none;
     padding: 5px 10px;
     width: 100%;
-    height:100%
+    height: 100%
 }
 
 .btn_outer {
@@ -77,9 +81,10 @@
 
 .left {
     display: flex;
+    flex: 3;
 }
 
-.controls{
+.controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -87,12 +92,18 @@
     width: 100%
 }
 
-.right .btn_outer{
-    width: calc(10*var(--index));
+.right .btn_outer {
+    width: calc(10 * var(--index));
 }
 
 .right .btn {
-    font-size: calc(2*var(--index));
+    font-size: calc(2 * var(--index));
+}
+.right {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    flex-direction: column;
 }
 
 .desc {
@@ -100,7 +111,7 @@
     justify-content: center;
 }
 
-.wait{
+.wait {
     color: white;
 }
 
@@ -110,10 +121,177 @@
     top: 0;
 }
 
+.grid {
+    display: grid;
+    width: 80vw;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 80vw;
+    grid-gap: 2px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.grid_item_outer {
+    width: 100%;
+    height: 100%;
+    border: #000 1px solid;
+    padding: 10px;
+    border-radius: 20px;
+    background: #ffeada;
+    transition: background-color .5s;
+    max-height: 30vw;
+}
+
+.grid_item_outer:hover {
+    background: #c3cdd9;
+}
+
+.grid_item_outer:hover a {
+    color: #ffffff;
+    background: darkorange;
+}
+
+.grid_item_inner {
+    width: 100%;
+    height: 100%;
+    font-size: calc(1.2 * var(--index));
+}
+
+.grid_item_inner_bottom {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid_item_inner_bottom a {
+    color: darkorange;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color .3s, background-color .3s;
+    padding: 5px 7px;
+    border-radius: 20px;
+}
+
+.title {
+    text-align: center;
+    color: #ffffff;
+}
+
+form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 325px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    color: white;
+    font-weight: bold;
+}
+
+dl, dd, dd {
+    width: 100%;
+}
+
+.label {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+form a {
+    color: lightcoral;
+    text-decoration: none;
+    background: #ffe08e;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+input[type="submit"] {
+    margin: 10px;
+}
+
+input[type="password"], input[type="text"], input[type="email"] {
+    border-radius: 20px;
+    padding: 15px 10px;
+    margin-bottom: 20px;
+    border: none;
+    width: 100%;
+    box-shadow: #9fc3ff 0 0 10px;
+}
+
+input[type="submit"] {
+    padding: 15px;
+    border-radius: 20px;
+    border: none;
+    background: khaki;
+    box-shadow: #9fc3ff 0 0 10px;
+    width: 100%;
+}
+
+.error {
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    width: 200px;
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    right: 100%;
+    top: 10px;
+    transition: transform .5s;
+}
+
+.shown {
+    transform: translateX(210px);
+}
+
+.user_outer {
+    max-width: 50px;
+}
+
+.logo_outer {
+    max-width: 150px;
+}
+
+.user_outer img, .logo_outer img{
+    width: 100%;
+}
+
+.user_outer img {
+    border-radius: 50%;
+}
+
+header {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.nothing {
+    color: #ffffff;
+    max-width: max-content;
+    position: absolute;
+    top: 50%;
+    font-size: calc(1.1*var(--index));
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
 @media screen and (min-width: 1000px) {
     .top_text {
         display: flex;
     }
+
     .text, .desc {
         min-height: 60vh;
     }
@@ -123,15 +301,19 @@
     .container {
         padding: 10px;
     }
+
     .top_text {
         display: block;
     }
+
     .desc {
         min-height: 30vh
     }
+
     .text {
         min-height: 50vh;
     }
+
     .text_outer, .desc_outer {
         margin: 0 0 10px 0;
     }

@@ -14,16 +14,24 @@
         </style>
     </head>
     <body>
+        <header>
+            <a class="logo_outer" href="/">
+                <img src="{{url_for('static', filename='imgs/оцрв.png')}}" alt="user">
+            </a>
+
+            <a class="user_outer" href="/me">
+                <img src="{{url_for('static', filename='imgs/user.jpg')}}" alt="user">
+            </a>
+        </header>
         <div class="error">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
-                    <div class="error_outer">
-                        <div class="error_inner">
-                            <p class="error_text">{{ message }}</p>
+                        <div class="error_outer">
+                            <div class="error_inner">
+                                <p class="error_text">{{ message }}</p>
+                            </div>
                         </div>
-                    </div>
-
                     {% endfor %}
                 {% endif %}
             {% endwith %}
@@ -64,7 +72,7 @@
 
             </div>
             <audio id="audio" preload="metadata">
-                <source src="{{url_for('static', filename='sounds/' + name)}}" type="audio/wav">
+                <source src="{{url_for('static', filename=name)}}" type="audio/wav">
             </audio>
         </div>
     </body>
@@ -85,7 +93,7 @@
         }
 
         function onSend(){
-            window.location.replace("/save_id?id=" + "{{text['id']}}")
+            window.location.replace("/save_id?id=" + "{{text['id']}}" + "&redirect={{redirect}}")
         }
 
         function onStart() {

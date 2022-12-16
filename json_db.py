@@ -39,3 +39,8 @@ class JsonDB:
         data = json.dumps(data)
         with open(self.path, "w") as file:
             file.write(data)
+
+    def delete_item(self, key):
+        dictionary = self.load()
+        del dictionary[key]
+        self.push(dictionary)

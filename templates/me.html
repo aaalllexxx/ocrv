@@ -1,10 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    </head>
+    <style>
+        body {
+            background: url('{{url_for('static', filename='imgs/bg.svg')}}') no-repeat;
+            background-size: cover; /* Современные браузеры */
+        }
+    </style>
+    <body>
+        <header>
+            <a class="logo_outer" href="/">
+                <img src="{{url_for('static', filename='imgs/оцрв.png')}}" alt="user">
+            </a>
+
+            <a class="user_outer" href="/me">
+                <img src="{{url_for('static', filename='imgs/user.jpg')}}" alt="user">
+            </a>
+        </header>
+        <div class="container">
+            {% if user.recent_texts %}
+                <h1 class="title">Недавние тексты</h1>
+                <div class="grid">
+                    {% for i in user.recent_texts %}
+                    <div class="grid_item_outer">
+                        <div class="grid_item_inner">
+                            <p class="grid_item_text">{{texts[i]["text"][:50].strip()|safe}}{% if texts[i]["text"][:50] != texts[i]["text"]%}...{%endif%}</p>
+                            <div class="grid_item_inner_bottom">
+                                {% if can_redact %}
+                                    <a href="/index?id={{i}}&redir=me" class="grid_item_inner_link">редактировать</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h1 class="nothing">Тут пока ничего нет :(<br>Запишите текст на главной странице и он появится здесь.</h1>
+            {% endif %}
+        </div>
+    </body>
 </html>

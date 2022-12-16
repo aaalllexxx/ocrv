@@ -2,6 +2,7 @@ from abc import ABC
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
+from settings import env
 
 
 class Log(ABC):
@@ -10,6 +11,7 @@ class Log(ABC):
 
 class LogType(Enum):
     file = 0
+    console = 1
 
 
 @dataclass
@@ -29,9 +31,17 @@ class FileLog(Log):
             file.write("\n")
 
 
+class ConsoleLog(Log):
+    @staticmethod
+    def log(data: LogInfo, **kwargs):
+        if env.debug:
+            print(f"[{data.user_id}] | {data.info} | {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}", **kwargs)
+
+
 class Debug:
     __log_functions = {
-        "file": FileLog().log
+        "file": FileLog().log,
+        "console": ConsoleLog().log
     }
 
     @classmethod

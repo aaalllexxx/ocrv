@@ -17,6 +17,7 @@ class User(db.Model):
         self.email = email
         self.password = password
         self.text_id = 0
+        self.recent_texts = "[]"
 
     def __repr__(self):
         return '<User %r>' % self.id

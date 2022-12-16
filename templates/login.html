@@ -1,17 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% from "_formhelpers.html" import render_field %}
-<form method=post>
-  <dl>
-    {{ render_field(form.username) }}
-    {{ render_field(form.password) }}
-  </dl>
-  <p><input type=submit value=Login></p>
-</form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+        <style>
+            body {
+                background: url('{{url_for('static', filename='imgs/bg.svg')}}') no-repeat;
+                background-size: cover; /* Современные браузеры */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            {% from "_formhelpers.html" import render_field %}
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="error">
+                        {% for message in messages %}
+                            <div class="error_outer">
+                                <div class="error_inner">
+                                    <p class="error_text">{{ message }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <form method=post>
+                <dl>
+                    {{ render_field(form.username) }}
+                    {{ render_field(form.password) }}
+                </dl>
+                <input type=submit value=Login>
+                <a href="/register">Зарегистрироваться</a>
+            </form>
+        </div>
+    </body>
+    <script>
+        let error = document.querySelector(".error");
+        if (error != null){
+            setTimeout(()=>{error.classList.add("shown")}, 100)
+        }
+    </script>
 </html>

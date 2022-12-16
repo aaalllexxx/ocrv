@@ -4,4 +4,5 @@ import register.routes
 import index.routes
 import me.routes
 import next.routes
+import debug.routes
 import main
