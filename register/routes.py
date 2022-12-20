@@ -27,7 +27,6 @@ def register():
         registered_user = User.query.filter_by(
             email=form.email.data if form.email else "").first() or User.query.filter_by(
             name=form.username.data).first()
-        print(type(registered_user))
         if registered_user:
             if user.email == registered_user.email and env.email_required:
                 flash("Почта уже зарегистрирована")

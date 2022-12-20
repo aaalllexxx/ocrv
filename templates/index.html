@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>recorder main page</title>
+        <title>Главная страница</title>
         <script src="{{url_for('static', filename='js/record.js')}}" defer></script>
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -82,10 +82,11 @@
         let startButton = document.querySelector("#start")
         let listenButton = document.querySelector("#startListen")
         let rec_div = document.querySelector(".wait")
-
-        function onSkip() {
-            window.location.replace('/skip')
-        }
+        {% if skipbutton %}
+            function onSkip() {
+                window.location.replace('/skip')
+            }
+        {% endif %}
 
         function onStop() {
             rec_div.innerText = "Подождите..."

@@ -2,7 +2,7 @@
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>Регистрация</title>
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
         <style>
             body {
@@ -37,6 +37,7 @@
                     {{ render_field(form.password) }}
                     {{ render_field(form.confirm) }}
                 </dl>
+                <p style="text-align: center">Нажимая на кнопку Register, вы соглашаетесь с использованием файлов cookie</p>
                 <input type=submit value=Register>
                 <a href="/login">Войти</a>
             </form>

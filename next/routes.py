@@ -17,13 +17,15 @@ def skip(user):
 
 @app.route("/skip")
 def skip_text():
+    if not (request.referrer in [request.host_url, request.host_url + "index"]):
+        return redirect("/")
     user = get_user(request)
     if env.auto_text_analise:
         index = analise_text(text_list[user.text_id]["text"])
     else:
         index = ""
     info = LogInfo(
-        f"skipped text {text_list[user.text_id]['id']}{'' if not env.auto_text_analise or not index else ' with potential error in position ' + str(index[0]) + ' in word `' + index[1] + '`. Word to replace: `' + index[2]}`",
+        f"skipped text {text_list[user.text_id]['id']}{'' if not env.auto_text_analise or not index else ' with potential error in position ' + str(index[0]) + ' in word `' + index[1] + '`. Word to replace: `' + index[2] + '`'}",
         str(user.id))
     Debug.log(info, LogType.file, "logs/texts.log")
     skip(user)
