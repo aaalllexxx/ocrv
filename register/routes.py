@@ -45,6 +45,7 @@ def register():
                 json_data[ident.hex] = mail
                 try:
                     send_mail("OCRV registration", "Ваша ссылка для подтверждения регистрации: " + link, user.email)
+                    flash("Сообщение отправлено")
                 except:
                     flash("Не удалось отправить сообщение")
     if json_data and ("id" in request.args) and ("email" in request.args) and json_data[request.args["id"]] == \
