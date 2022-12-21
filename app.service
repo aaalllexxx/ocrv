@@ -1,0 +1,13 @@
+[Unit]
+Description=Flask application
+After=multi-user.target
+
+[Service]
+User=alex
+Group=admin
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 /home/<username>/app.py
+
+[Install]
+WantedBy=multi-user.target
